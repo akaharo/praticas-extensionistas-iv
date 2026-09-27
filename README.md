@@ -8,7 +8,7 @@ Professor: Jean Carlos Hennrichs
 Bernardo Haro Massignani e Marcelo Schuermann
 
 ## Ideia
-
+.
 O Conserta Bairro é uma proposta de PWA para aproximar moradores que têm objetos domésticos com pequenos defeitos de voluntários e espaços comunitários que podem ajudar no conserto. A intenção é prolongar o uso dos objetos e facilitar o contato dentro do bairro.
 
 O morador cadastra um pedido com categoria, descrição e bairro. Um voluntário pode aceitar o pedido e sugerir um ponto de encontro parceiro. O andamento fica registrado como aberto, combinado, concluído ou cancelado. Dados de contato e endereços pessoais não aparecem na listagem pública. Não há pagamento pelo aplicativo.
