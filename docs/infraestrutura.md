@@ -1,6 +1,10 @@
 # Infraestrutura de publicação proposta
 
 **Projeto:** Conserta Bairro  
+**Curso:** Análise e Desenvolvimento de Sistemas — UNOESC
+
+**Professor:** Jean Carlos Hennrichs
+
 **Autores:** Bernardo Haro Massignani e Marcelo Schuermann
 
 ## Escolha

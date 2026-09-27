@@ -1,6 +1,10 @@
 # Conserta Bairro
 
 Projeto de Práticas Extensionistas IV — Entrega 1  
+Curso: Análise e Desenvolvimento de Sistemas — UNOESC
+
+Professor: Jean Carlos Hennrichs
+
 Bernardo Haro Massignani e Marcelo Schuermann
 
 ## Ideia
