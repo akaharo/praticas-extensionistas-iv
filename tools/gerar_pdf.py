@@ -90,6 +90,7 @@ text(42, 442, "Integrantes", 10, True)
 lines(42, 423, ["Bernardo Haro Massignani", "Marcelo Schuermann"], 11, 19)
 text(42, 360, "Repositório da disciplina", 10, True)
 text(42, 340, "https://github.com/akaharo/praticas-extensionistas-iv", 10, False, BLUE)
+c.linkURL("https://github.com/akaharo/praticas-extensionistas-iv", (42, 336, 330, 351), relative=0)
 text(42, 290, "Proposta", 10, True)
 lines(42, 271, [
     "O Conserta Bairro aproxima moradores que têm objetos domésticos com pequenos defeitos",
