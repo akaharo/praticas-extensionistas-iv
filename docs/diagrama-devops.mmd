@@ -1,0 +1,19 @@
+flowchart LR
+  A[Desenvolvimento local] --> B[GitHub: branch e pull request]
+  B --> C[Revisão pelo grupo]
+  B --> D[GitHub Actions: instalar, verificar e gerar build]
+  C --> E{Aprovado?}
+  D --> E
+  E -- não --> A
+  E -- sim --> F[Cloudflare Pages: prévia]
+  F --> G{Prévia validada?}
+  G -- não --> A
+  G -- sim --> H[Merge na main]
+  H --> I[Cloudflare Pages: produção]
+  H --> J[Migrações versionadas no Supabase]
+  I --> K[Verificação básica e logs]
+  J --> K
+  K --> L{Problema?}
+  L -- sim --> M[Reverter publicação e corrigir]
+  M --> A
+  L -- não --> N[Versão disponível]

@@ -1,0 +1,24 @@
+@startuml
+title Conserta Bairro — diagrama UML de implantação
+skinparam shadowing false
+left to right direction
+
+node "Celular ou computador do usuário" <<device>> as device {
+  node "Navegador" <<executionEnvironment>> as browser {
+    artifact "PWA instalada\n(interface, manifesto, service worker)" as pwa
+  }
+}
+
+node "Cloudflare Pages" <<node>> as pages {
+  artifact "Arquivos estáticos da PWA" as static
+}
+
+node "Projeto Supabase" <<node>> as supabase {
+  node "Auth + Data API" <<executionEnvironment>> as api
+  database "PostgreSQL\n(pedidos, usuários, pontos)" as db
+}
+
+browser -- pages : HTTPS · download e atualizações
+browser -- api : HTTPS · consultas e alterações com sessão
+api -- db : conexão interna · SQL/RLS
+@enduml

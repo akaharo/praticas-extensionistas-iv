@@ -1,0 +1,38 @@
+@startuml
+title Conserta Bairro — diagrama UML de pacotes
+skinparam packageStyle rectangle
+skinparam shadowing false
+left to right direction
+
+package "Interface PWA" as UI {
+  [Telas e componentes]
+}
+package "Recursos PWA" as PWA {
+  [Manifesto]
+  [Service worker e cache]
+}
+package "Aplicação" as APP {
+  [Pedidos de reparo]
+  [Agendamento]
+  [Moderação]
+}
+package "Domínio" as DOM {
+  [Pedido]
+  [Usuário / voluntário]
+  [Ponto de encontro]
+}
+package "Portas de persistência" as PORT {
+  [Repositórios (interfaces)]
+}
+package "Infraestrutura" as INF {
+  [Adaptadores Supabase]
+  [Cliente de autenticação]
+}
+
+UI ..> APP : usa
+UI ..> PWA : instala e lê cache
+APP ..> DOM : aplica regras
+APP ..> PORT : consulta e grava
+INF ..> PORT : implementa
+INF ..> DOM : mapeia dados
+@enduml
