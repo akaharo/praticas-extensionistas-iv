@@ -7,16 +7,16 @@ Bernardo Haro Massignani e Marcelo Schuermann
 
 O Conserta Bairro é uma proposta de PWA para aproximar moradores que têm objetos domésticos com pequenos defeitos de voluntários e espaços comunitários que podem ajudar no conserto. A intenção é prolongar o uso dos objetos e facilitar o contato dentro do bairro.
 
-O morador cadastra um pedido com categoria, descrição e bairro. Um voluntário pode aceitar o pedido e sugerir um ponto de encontro parceiro. O andamento fica registrado como aberto, combinado, concluído ou cancelado. Dados de contato e endereço exato não aparecem na listagem pública. Não há pagamento pelo aplicativo.
+O morador cadastra um pedido com categoria, descrição e bairro. Um voluntário pode aceitar o pedido e sugerir um ponto de encontro parceiro. O andamento fica registrado como aberto, combinado, concluído ou cancelado. Dados de contato e endereços pessoais não aparecem na listagem pública. Não há pagamento pelo aplicativo.
 
 Nesta primeira entrega há **modelagem**, não uma aplicação publicada. Os diagramas mostram a arquitetura planejada para a implementação.
 
 ## Documentação da Entrega 1
 
 - [PDF para entrega](output/pdf/Conserta_Bairro_Entrega_1.pdf)
-- [Diagrama UML de pacotes](docs/diagrama-pacotes.pdf) ([fonte PlantUML](docs/diagrama-pacotes.puml))
-- [Diagrama UML de implantação](docs/diagrama-implantacao.pdf) ([fonte PlantUML](docs/diagrama-implantacao.puml))
-- [Diagrama de arquitetura DevOps](docs/diagrama-devops.pdf) ([fonte Mermaid](docs/diagrama-devops.mmd))
+- [Diagrama UML de pacotes](docs/diagrama-pacotes.pdf) ([versão editável em PlantUML](docs/diagrama-pacotes.puml))
+- [Diagrama UML de implantação](docs/diagrama-implantacao.pdf) ([versão editável em PlantUML](docs/diagrama-implantacao.puml))
+- [Diagrama de arquitetura DevOps](docs/diagrama-devops.pdf) ([versão editável em Mermaid](docs/diagrama-devops.mmd))
 - [Decisão de infraestrutura](docs/infraestrutura.md)
 
 ## Recorte funcional
@@ -27,7 +27,7 @@ Nesta primeira entrega há **modelagem**, não uma aplicação publicada. Os dia
 4. Definição de um ponto de encontro parceiro e atualização de status.
 5. Moderação de pedidos inadequados.
 
-O PWA poderá guardar a interface e a última lista consultada para leitura sem conexão. Criar e atualizar pedidos exige conexão; assim evitamos mostrar como enviada uma operação que ainda não chegou ao servidor.
+O PWA poderá guardar a interface e a última lista pública consultada para leitura sem conexão. Criar e atualizar pedidos exige conexão; assim evitamos mostrar como enviada uma operação que ainda não chegou ao servidor.
 
 ## Organização prevista
 

@@ -28,6 +28,7 @@ GREEN = colors.HexColor("#5A7D69")
 c = canvas.Canvas(str(OUT), pagesize=(W, H))
 c.setTitle("Conserta Bairro - Entrega 1 - Práticas Extensionistas IV")
 c.setAuthor("Bernardo Haro Massignani; Marcelo Schuermann")
+c.setCreator("Conserta Bairro")
 
 
 def text(x, y, s, size=10, bold=False, color=INK):
@@ -112,11 +113,11 @@ header("1. Diagrama UML de pacotes", "Dependências entre as partes planejadas d
 box(50, 345, 185, 100, "Interface PWA", ["Telas de pedidos", "Busca por bairro/categoria", "Formulários e estados"], "package")
 box(50, 175, 185, 100, "Recursos PWA", ["Manifesto de instalação", "Service worker", "Cache de leitura"], "package")
 box(325, 345, 185, 100, "Aplicação", ["Abrir e aceitar pedido", "Combinar encontro", "Atualizar e moderar"], "package")
-box(325, 175, 185, 100, "Portas de persistência", ["Interfaces de repositório", "Contratos de autenticação"], "package")
+box(325, 175, 185, 100, "Portas da aplicação", ["Interfaces de repositório", "Contrato de autenticação"], "package")
 box(600, 345, 185, 100, "Domínio", ["Pedido e status", "Morador e voluntário", "Ponto de encontro"], "package")
 box(600, 175, 185, 100, "Infraestrutura", ["Adaptadores Supabase", "Mapeamento de dados", "Cliente de autenticação"], "package")
 arrow(235, 395, 325, 395, "usa", True)
-arrow(142, 345, 142, 275, "instala/cache", True, 50, 0)
+arrow(142, 345, 142, 275, "usa recursos", True, 50, 0)
 arrow(510, 395, 600, 395, "regras", True)
 arrow(417, 345, 417, 275, "consulta/grava", True, 57, 0)
 arrow(600, 225, 510, 225, "implementa", True)
@@ -133,11 +134,11 @@ box(67, 240, 207, 155, "<<executionEnvironment>>", ["Navegador", "", "<<artifact
 box(365, 340, 225, 127, "<<node>> Cloudflare Pages", ["<<artifact>> arquivos estáticos", "HTML, CSS, JS, manifesto", "e service worker"], fill=LIGHT)
 box(365, 134, 430, 157, "<<node>> Projeto Supabase", [], fill=colors.HexColor("#F8FAFC"))
 box(382, 155, 173, 91, "<<executionEnvironment>>", ["Auth + Data API"], fill=LIGHT)
-box(594, 155, 184, 91, "<<database>> PostgreSQL", ["Pedidos, usuários e", "pontos de encontro"], fill=LIGHT)
+box(594, 155, 184, 91, "<<executionEnvironment>>", ["PostgreSQL", "Pedidos, usuários e", "pontos de encontro"], fill=LIGHT)
 arrow(293, 400, 365, 400, "HTTPS · arquivos")
 arrow(293, 284, 382, 201, "HTTPS · API + sessão", False, 1, 19)
-arrow(555, 200, 594, 200, "SQL/RLS", False, 0, 10)
-text(48, 98, "O navegador guarda apenas o conteúdo em cache. Os dados atuais e as permissões ficam no Supabase.", 9)
+arrow(555, 200, 594, 200, "SQL", False, 0, 10)
+text(48, 98, "O cache ajuda a ler a lista pública sem conexão. Os pedidos atualizados ficam no Supabase.", 9)
 text(48, 81, "RLS limita o acesso aos registros; dados de contato ficam restritos aos envolvidos no pedido.", 9)
 c.showPage()
 
@@ -152,15 +153,16 @@ box(xs[1], top_y, ww, hh, "Pull request", ["GitHub", "Revisão pelo grupo"])
 box(xs[2], top_y, ww, hh, "Verificações", ["GitHub Actions", "Lint, testes e build"])
 box(xs[3], top_y, ww, hh, "Prévia", ["Cloudflare Pages", "Conferência antes do merge"])
 box(xs[3], bot_y, ww, hh, "Branch main", ["Mudança aprovada", "e incorporada"])
-box(xs[2], bot_y, ww, hh, "Publicação", ["Pages: arquivos da PWA", "Supabase: migrações"])
+box(xs[2], bot_y, ww, hh, "Publicação", ["Banco: migração, se houver", "Pages: PWA depois"])
 box(xs[1], bot_y, ww, hh, "Verificação", ["Abrir PWA, testar fluxo", "e observar logs"])
-box(xs[0], bot_y, ww, hh, "Correção", ["Se houver falha:", "reverter e ajustar"])
+box(xs[0], bot_y, ww, hh, "Resultado", ["Sem falha: versão disponível", "Falha: reverter/corrigir"])
 for i in range(3):
     arrow(xs[i] + ww, top_y + 46, xs[i + 1], top_y + 46)
 arrow(xs[3] + ww / 2, top_y, xs[3] + ww / 2, bot_y + hh, "aprovado", False, 46, 0)
 for i in range(3, 0, -1):
     arrow(xs[i], bot_y + 46, xs[i - 1] + ww, bot_y + 46)
-text(48, 115, "Em caso de falha na verificação, o grupo volta à versão anterior e abre uma correção.", 9)
+arrow(xs[0] + ww / 2, bot_y + hh, xs[0] + ww / 2, top_y, "se falhar", True, 37, 0)
+text(48, 115, "Mudanças no banco são aplicadas antes do cliente que depende delas. Em caso de falha, o grupo corrige a versão.", 9)
 text(48, 97, "Este é o processo proposto; ainda não há pipeline configurada ou aplicação publicada.", 9)
 c.showPage()
 
@@ -184,7 +186,7 @@ lines(42, 279, [
     "Ativar as contas do grupo; criar o projeto Supabase; aplicar tabelas e políticas RLS; conectar",
     "o GitHub ao Cloudflare Pages; configurar variáveis públicas; testar a PWA e o fluxo de pedidos.",
     "Segredos administrativos não devem entrar no cliente nem no repositório. O service worker",
-    "guardará somente a interface e dados de leitura. Envio e atualização exigirão conexão.",
+    "guardará a interface e a lista pública consultada. Envio e atualização exigirão conexão.",
 ], 9.5, 16)
 text(42, 194, "Referências técnicas", 10, True)
 lines(42, 176, [

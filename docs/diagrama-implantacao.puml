@@ -15,10 +15,12 @@ node "Cloudflare Pages" <<node>> as pages {
 
 node "Projeto Supabase" <<node>> as supabase {
   node "Auth + Data API" <<executionEnvironment>> as api
-  database "PostgreSQL\n(pedidos, usuários, pontos)" as db
+  node "PostgreSQL" <<executionEnvironment>> as db {
+    artifact "Tabelas de pedidos, usuários\ne pontos de encontro"
+  }
 }
 
 browser -- pages : HTTPS · download e atualizações
 browser -- api : HTTPS · consultas e alterações com sessão
-api -- db : conexão interna · SQL/RLS
+api -- db : conexão interna · SQL
 @enduml

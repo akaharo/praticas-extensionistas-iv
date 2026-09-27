@@ -7,7 +7,7 @@
 
 Propomos usar **Cloudflare Pages** para os arquivos estáticos da PWA (HTML, CSS, JavaScript, manifesto e service worker) e **Supabase** para autenticação, API de dados e PostgreSQL. O navegador baixa o cliente pelo HTTPS do Pages e, quando precisa consultar ou alterar pedidos, conversa diretamente com a API do Supabase usando a sessão do usuário.
 
-Essa divisão serve ao tamanho esperado do projeto: não precisamos administrar um servidor de aplicação só para disponibilizar os arquivos da interface. O Supabase reúne os serviços necessários para guardar pedidos e identificar usuários. A publicação do Pages pode acompanhar a branch `main` no GitHub. Para novas versões, planejamos revisar as mudanças, executar verificações automáticas e usar uma prévia antes de publicar.
+Essa divisão serve ao tamanho esperado do projeto: não precisamos administrar um servidor de aplicação só para disponibilizar os arquivos da interface. O Supabase reúne os serviços necessários para guardar pedidos e identificar usuários. O Pages pode gerar uma prévia a partir do repositório no GitHub. Para novas versões, planejamos revisar as mudanças e executar verificações antes de publicar a branch `main`.
 
 ## Por que essa opção
 
@@ -25,8 +25,8 @@ Não estamos afirmando que o sistema já está no ar. Esta entrega documenta a e
 - Habilitar Row Level Security (RLS) e conceder somente as operações necessárias em cada tabela exposta pela API.
 - Exibir bairro e descrição do item na listagem; restringir dados de contato aos envolvidos no pedido.
 - Guardar segredos administrativos fora do cliente e do repositório. A chave pública do cliente não substitui as políticas de acesso no banco.
-- Servir o PWA por HTTPS, com manifesto e service worker. O cache ajuda na leitura sem conexão, mas atualizações de pedidos dependem da rede.
-- Aplicar alterações do banco com migrações versionadas e verificar a aplicação antes de promover uma versão.
+- Servir o PWA por HTTPS, com manifesto e service worker. O cache da interface e da listagem pública ajuda na leitura sem conexão, mas atualizações de pedidos dependem da rede.
+- Quando houver mudança de esquema, revisar e aplicar a migração versionada antes de publicar uma versão do cliente que dependa dela.
 
 ## Referências
 

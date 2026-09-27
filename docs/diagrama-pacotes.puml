@@ -21,8 +21,9 @@ package "Domínio" as DOM {
   [Usuário / voluntário]
   [Ponto de encontro]
 }
-package "Portas de persistência" as PORT {
+package "Portas da aplicação" as PORT {
   [Repositórios (interfaces)]
+  [Contrato de autenticação]
 }
 package "Infraestrutura" as INF {
   [Adaptadores Supabase]
@@ -30,7 +31,7 @@ package "Infraestrutura" as INF {
 }
 
 UI ..> APP : usa
-UI ..> PWA : instala e lê cache
+UI ..> PWA : usa recursos
 APP ..> DOM : aplica regras
 APP ..> PORT : consulta e grava
 INF ..> PORT : implementa
